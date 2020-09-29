@@ -69,6 +69,7 @@ void HeapSort(int vet[],int tam,Saida* saida){
     //constroi a heap e ordena o vetor
     for(int i=tam/2-1; i>=0; i--){
         MaxHeapfy(vet,tam,i,saida);
+
     }
 
     //extrai elementos um a um da heap
@@ -80,7 +81,8 @@ void HeapSort(int vet[],int tam,Saida* saida){
         saida->setnTrocas();
 
         //max heapfy a heap reduzida
-        MaxHeapfy(vet,tam,0,saida);
+        MaxHeapfy(vet,i,0,saida);
+
     }
 }
 
@@ -152,7 +154,7 @@ int main()
         saidas[c] = saidaq;
         c++;
         time_span = duration_cast<duration<double>>(inicio-fim);
-        imprimeVetor(vet,tam);
+        //imprimeVetor(vet,tam);
 
         //ShellSort
         criaVetor(vet,tam); //cria um vetor com valores aleatórios

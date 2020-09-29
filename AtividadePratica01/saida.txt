@@ -1,18 +1,18 @@
-1,Algoritmo: BubbleSort,  Tamanho: 10,  Comparacoes: 54,  Trocas: 18,  Tempo: 0,  
+1,Algoritmo: BubbleSort,  Tamanho: 2000,  Comparacoes: 2000999,  Trocas: 945059,  Tempo: 0,  
 
-2,Algoritmo: HeapSort  ,  Tamanho: 10,  Comparacoes: 76,  Trocas: 33,  Tempo: 0,  
+2,Algoritmo: HeapSort  ,  Tamanho: 2000,  Comparacoes: 42008,  Trocas: 20004,  Tempo: 0,  
 
-3,Algoritmo: ShellSort ,  Tamanho: 10,  Comparacoes: 14,  Trocas: 14,  Tempo: 0,  
+3,Algoritmo: ShellSort ,  Tamanho: 2000,  Comparacoes: 358068,  Trocas: 358068,  Tempo: 0,  
 
-4,Algoritmo: BubbleSort,  Tamanho: 11,  Comparacoes: 65,  Trocas: 28,  Tempo: 0,  
+4,Algoritmo: BubbleSort,  Tamanho: 3000,  Comparacoes: 4501499,  Trocas: 2242888,  Tempo: 0,  
 
-5,Algoritmo: HeapSort  ,  Tamanho: 11,  Comparacoes: 92,  Trocas: 41,  Tempo: 0,  
+5,Algoritmo: HeapSort  ,  Tamanho: 3000,  Comparacoes: 66556,  Trocas: 31778,  Tempo: 0,  
 
-6,Algoritmo: ShellSort ,  Tamanho: 11,  Comparacoes: 16,  Trocas: 16,  Tempo: 0,  
+6,Algoritmo: ShellSort ,  Tamanho: 3000,  Comparacoes: 772022,  Trocas: 772022,  Tempo: 0,  
 
-7,Algoritmo: BubbleSort,  Tamanho: 15,  Comparacoes: 119,  Trocas: 58,  Tempo: 0,  
+7,Algoritmo: BubbleSort,  Tamanho: 5000,  Comparacoes: 12502499,  Trocas: 6088462,  Tempo: 0,  
 
-8,Algoritmo: HeapSort  ,  Tamanho: 15,  Comparacoes: 120,  Trocas: 53,  Tempo: 0,  
+8,Algoritmo: HeapSort  ,  Tamanho: 5000,  Comparacoes: 118344,  Trocas: 56672,  Tempo: 0,  
 
-9,Algoritmo: ShellSort ,  Tamanho: 15,  Comparacoes: 46,  Trocas: 46,  Tempo: 0,  
+9,Algoritmo: ShellSort ,  Tamanho: 5000,  Comparacoes: 2128616,  Trocas: 2128616,  Tempo: 0,  
 
