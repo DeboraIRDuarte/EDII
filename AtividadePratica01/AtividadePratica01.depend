@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1601342945 source:c:\users\izabe\onedrive\documentos\ufjf\estudando\ed2\atividadepratica01\main.cpp
+	<iostream>
+	<cstdlib>
+	<chrono>
+	<ctime>
+	<ratio>
+	"saida.h"
+
+1601342345 c:\users\izabe\onedrive\documentos\ufjf\estudando\ed2\atividadepratica01\saida.h
+	<sstream>
+
