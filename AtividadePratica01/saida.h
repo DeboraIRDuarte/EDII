@@ -19,9 +19,9 @@ public:
 
 
 
-    Saida (string algoritmo, int tamanho)
+    Saida (string algoritmos, int tamanho)
     {
-        algoritmo = algoritmo;
+        algoritmo = algoritmos;
 
         stringstream ss;
 
@@ -45,11 +45,11 @@ public:
         return tamanhos;
     }
 
-    int getnComparacoes(){
+    int getComparacoes(){
         return nComparacoes;
     }
 
-    int getnTrocas(){
+    int getTrocas(){
         return nTrocas;
     }
     int getTempo(){

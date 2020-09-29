@@ -36,37 +36,51 @@ void bubbleSort(int vet[], int tam, Saida* saida){
     }
 }
 
-int particionamento(int vet[], int p, int q,Saida* saida){
-  int pivo = (p+q)/2;
-  int i = p;
-  int j = q;
-  do{
-       while (vet[i] < pivo){
-            saida->setnComparacoes();
-            i = i + 1;
-       }
-       while (vet[j] > pivo){
-           saida->setnComparacoes();
-            j = j - 1;
-       }
-        if (i <= j ){
-            int aux = vet[i];
-            vet[i] = vet[j];
-            vet[j] = aux;
-            saida->setnTrocas();
-            i = i+1;
-            j = j+1;
-        }
+void MaxHeapfy(int vet[],int tam, int i,Saida* saida){
+    int maior =i;
+    int esq = 2*i+1;
+    int dir = 2*i+2;
 
-  } while(i <= j);
-return j;
+    //se filho a esquerda é maior que a raiz
+    saida->setnComparacoes();
+    if(esq<tam && vet[esq]>vet[maior]){
+        maior = esq;
+    }
+
+    //se filho a direita é maior que "maior"
+    saida->setnComparacoes();
+    if (dir<tam && vet[dir]>vet[maior]){
+        maior=dir;
+    }
+
+    //se maior não é a raiz
+    if (maior!=i){
+        saida->setnTrocas();
+        int aux = vet[i];//troca maior e raiz
+        vet[i] = vet[maior];
+        vet[maior] = aux;
+
+        MaxHeapfy(vet,tam,maior,saida);//maxheapfy a sub-arvore afetada
+    }
 }
 
-void QuickSort(int vet[],int p, int r,Saida* saida){
-    if (p-r > 0){
-        int q = particionamento(vet,p,r,saida);
-        QuickSort(vet, p, q-1,saida);
-        QuickSort(vet, q+1, r,saida);
+void HeapSort(int vet[],int tam,Saida* saida){
+
+    //constroi a heap e ordena o vetor
+    for(int i=tam/2-1; i>=0; i--){
+        MaxHeapfy(vet,tam,i,saida);
+    }
+
+    //extrai elementos um a um da heap
+    for (int i=tam-1; i>=0;i--){
+
+        int aux = vet[0];//move a raiz para o final
+        vet[0] = vet[i];
+        vet[i] = aux;
+        saida->setnTrocas();
+
+        //max heapfy a heap reduzida
+        MaxHeapfy(vet,tam,0,saida);
     }
 }
 
@@ -114,10 +128,10 @@ int main()
         cout << "Tamanho do " << i << " teste: ";
         cin >> tam;
         vet = new int[tam];
-        criaVetor(vet,tam);
-        imprimeVetor(vet,tam);
+
 
         //BubbleSort
+        criaVetor(vet,tam); //cria um vetor com valores aleatórios
         Saida saidab = Saida("BubbleSort",tam);
         high_resolution_clock::time_point inicio = high_resolution_clock::now();
         bubbleSort(vet,tam,&saidab);
@@ -126,13 +140,13 @@ int main()
         saidas[c] = saidab;
         c++;
         duration<double> time_span = duration_cast<duration<double>>(inicio-fim);
-        //cout << time_span.count() << "\n";
-        imprimeVetor(vet,tam);
+        //imprimeVetor(vet,tam);
 
-        //QuickSort
-        Saida saidaq = Saida("QuickSort", tam);
+        //HeapSort
+        criaVetor(vet,tam); //cria um vetor com valores aleatórios
+        Saida saidaq = Saida("HeapSort  ", tam);
         inicio = high_resolution_clock::now();
-        QuickSort(vet,0,tam,&saidaq);
+        HeapSort(vet,tam,&saidaq);
         fim = high_resolution_clock::now();
         saidaq.setTempo(duration_cast<duration<double>>(fim-inicio).count());
         saidas[c] = saidaq;
@@ -141,30 +155,34 @@ int main()
         imprimeVetor(vet,tam);
 
         //ShellSort
-        Saida saidash = Saida("ShellSort",tam);
+        criaVetor(vet,tam); //cria um vetor com valores aleatórios
+        Saida saidash = Saida("ShellSort ",tam);
         inicio = high_resolution_clock::now();
         shellSort(vet,tam,&saidash);
         fim = high_resolution_clock::now();
         saidash.setTempo(duration_cast<duration<double>>(fim-inicio).count());
-        saidas[c] = saidaq;
+        saidas[c] = saidash;
         c++;
         time_span = duration_cast<duration<double>>(inicio-fim);
         //cout << time_span.count() << "\n";
-        imprimeVetor(vet,tam);
+        //imprimeVetor(vet,tam);
     }
 
+    //gravando no arquivo de saida
     ofstream arquivoSaida;
     arquivoSaida.open("saida.txt");
 
     if (arquivoSaida.is_open()){
         for (int i=0; i<3*nTestes; i++){
+            string nome;
+            nome = saidas[i].getAlgoritmo();
             arquivoSaida << i+1 << ","
-            << "Algoritmo: " << saidas[i].getAlgoritmo() << ",\t"
-            << "Tamanho: " << saidas[i].getTamanho() << ",\t"
-            << "Comparacoes: " << saidas[i].getnComparacoes() << ",\t"
-            << "Trocas: " << saidas[i].getnTrocas() << ",\t"
-            << "Tempo" << saidas[i].getTempo() << ",\t"
-            << "\n";
+            << "Algoritmo: " << nome << ",  "
+            << "Tamanho: " << saidas[i].getTamanho() << ",  "
+            << "Comparacoes: " << saidas[i].getComparacoes() << ",  "
+            << "Trocas: " << saidas[i].getTrocas() << ",  "
+            << "Tempo: " << saidas[i].getTempo() << ",  "
+            << "\n\n";
         }
     }
     else {
