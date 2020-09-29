@@ -12,7 +12,7 @@ private:
     string tamanhos;
     int nComparacoes;
     int nTrocas;
-    double tempo;
+    float tempo;
 
 
 public:
@@ -52,7 +52,7 @@ public:
     int getTrocas(){
         return nTrocas;
     }
-    int getTempo(){
+    float getTempo(){
         return tempo;
     }
 
@@ -64,7 +64,7 @@ public:
         nTrocas++;
     }
 
-    void setTempo( double ntempo){
+    void setTempo( float ntempo){
         tempo = ntempo;
     }
 

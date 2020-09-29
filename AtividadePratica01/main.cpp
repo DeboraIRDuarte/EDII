@@ -1,8 +1,6 @@
 #include <iostream>
 #include <cstdlib>
-#include <chrono>
-#include <ctime>
-#include <ratio>
+#include <time.h>
 #include <fstream>
 #include "saida.h"
 
@@ -109,15 +107,14 @@ void shellSort(int *V, int tam,Saida* saida){
       incremento = 1;
   }
 }
-int main()
+int main(){
 
+    clock_t t;
 
-{
     int *vet;
     int tam;
     int c = 0;
 
-    using namespace std::chrono;
 
     int nTestes;
 
@@ -135,38 +132,37 @@ int main()
         //BubbleSort
         criaVetor(vet,tam); //cria um vetor com valores aleatórios
         Saida saidab = Saida("BubbleSort",tam);
-        high_resolution_clock::time_point inicio = high_resolution_clock::now();
+        t = clock();
         bubbleSort(vet,tam,&saidab);
-        high_resolution_clock::time_point fim = high_resolution_clock::now();
-        saidab.setTempo(duration_cast<duration<double>>(fim-inicio).count());
+        t = clock() - t;
+        saidab.setTempo(((float)t)/CLOCKS_PER_SEC);
         saidas[c] = saidab;
         c++;
-        duration<double> time_span = duration_cast<duration<double>>(inicio-fim);
+
         //imprimeVetor(vet,tam);
 
         //HeapSort
         criaVetor(vet,tam); //cria um vetor com valores aleatórios
         Saida saidaq = Saida("HeapSort  ", tam);
-        inicio = high_resolution_clock::now();
+        t = clock();
         HeapSort(vet,tam,&saidaq);
-        fim = high_resolution_clock::now();
-        saidaq.setTempo(duration_cast<duration<double>>(fim-inicio).count());
+        t = clock() - t;
+        saidaq.setTempo(((float)t)/CLOCKS_PER_SEC);
         saidas[c] = saidaq;
         c++;
-        time_span = duration_cast<duration<double>>(inicio-fim);
+
         //imprimeVetor(vet,tam);
 
         //ShellSort
         criaVetor(vet,tam); //cria um vetor com valores aleatórios
         Saida saidash = Saida("ShellSort ",tam);
-        inicio = high_resolution_clock::now();
+        t = clock();
         shellSort(vet,tam,&saidash);
-        fim = high_resolution_clock::now();
-        saidash.setTempo(duration_cast<duration<double>>(fim-inicio).count());
+        t = clock() - t;
+        saidash.setTempo(((float)t)/CLOCKS_PER_SEC);
         saidas[c] = saidash;
         c++;
-        time_span = duration_cast<duration<double>>(inicio-fim);
-        //cout << time_span.count() << "\n";
+
         //imprimeVetor(vet,tam);
     }
 
@@ -186,6 +182,7 @@ int main()
             << "Tempo: " << saidas[i].getTempo() << ",  "
             << "\n\n";
         }
+        cout << "Arquivo criado!" << endl;
     }
     else {
         cout << "Não foi possível criar arquivo!" << endl;
