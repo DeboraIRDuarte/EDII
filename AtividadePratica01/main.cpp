@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <time.h>
 #include <fstream>
+#include <stdlib.h>
 #include "saida.h"
 
 using namespace std;
@@ -9,7 +10,7 @@ using namespace std;
 void criaVetor(int vet[],int tam){
 
     for (int i=0; i<tam; i++){
-        vet[i] = rand() % 100;
+        vet[i] = rand() % tam;
     }
 }
 
@@ -107,6 +108,10 @@ void shellSort(int *V, int tam,Saida* saida){
       incremento = 1;
   }
 }
+
+int compare (const void * a, const void * b){
+    return (*(int*)a - *(int*)b);
+}
 int main(){
 
     clock_t t;
@@ -121,7 +126,7 @@ int main(){
     cout << "Informe o numero de testes: ";
     cin >> nTestes;
 
-    Saida* saidas = new Saida[3*nTestes];
+    Saida* saidas = new Saida[4*nTestes];
 
     for (int i=0; i<nTestes; i++){
         cout << "Tamanho do " << i << " teste: ";
@@ -163,7 +168,16 @@ int main(){
         saidas[c] = saidash;
         c++;
 
-        //imprimeVetor(vet,tam);
+
+        //QSort
+        criaVetor(vet,tam);
+        Saida saidaqsort = Saida("QSort     ",tam);
+        t = clock();
+        qsort(vet,tam,sizeof(int), compare);
+        t = clock() -t;
+        saidaqsort.setTempo(((float)t)/CLOCKS_PER_SEC);
+        saidas[c]=saidaqsort;
+        c++;
     }
 
     //gravando no arquivo de saida
@@ -171,26 +185,22 @@ int main(){
     arquivoSaida.open("saida.txt");
 
     if (arquivoSaida.is_open()){
+        arquivoSaida << "Indice,Algoritmo,Tamanho,Comparacoes,Trocas,Tempo\n";
         for (int i=0; i<3*nTestes; i++){
             string nome;
             nome = saidas[i].getAlgoritmo();
-            arquivoSaida << i+1 << ","
-            << "Algoritmo: " << nome << ",  "
-            << "Tamanho: " << saidas[i].getTamanho() << ",  "
-            << "Comparacoes: " << saidas[i].getComparacoes() << ",  "
-            << "Trocas: " << saidas[i].getTrocas() << ",  "
-            << "Tempo: " << saidas[i].getTempo() << ",  "
-            << "\n\n";
+
+            arquivoSaida << i+1 << "," << nome << ","
+            << saidas[i].getTamanho() << ","
+            << saidas[i].getComparacoes() << ","
+            << saidas[i].getTrocas() << ","
+            << saidas[i].getTempo() << ",\n";
         }
         cout << "Arquivo criado!" << endl;
     }
     else {
         cout << "Não foi possível criar arquivo!" << endl;
     }
-
-
-
-
 
 
     delete[] saidas;

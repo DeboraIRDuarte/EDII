@@ -1,18 +1,10 @@
-1,Algoritmo: BubbleSort,  Tamanho: 2000,  Comparacoes: 2000999,  Trocas: 947058,  Tempo: 0.018,  
-
-2,Algoritmo: HeapSort  ,  Tamanho: 2000,  Comparacoes: 42008,  Trocas: 20004,  Tempo: 0,  
-
-3,Algoritmo: ShellSort ,  Tamanho: 2000,  Comparacoes: 358068,  Trocas: 358068,  Tempo: 0.003,  
-
-4,Algoritmo: BubbleSort,  Tamanho: 3000,  Comparacoes: 4501499,  Trocas: 2242888,  Tempo: 0.044,  
-
-5,Algoritmo: HeapSort  ,  Tamanho: 3000,  Comparacoes: 66556,  Trocas: 31778,  Tempo: 0.001,  
-
-6,Algoritmo: ShellSort ,  Tamanho: 3000,  Comparacoes: 772022,  Trocas: 772022,  Tempo: 0.006,  
-
-7,Algoritmo: BubbleSort,  Tamanho: 5000,  Comparacoes: 12502499,  Trocas: 6088462,  Tempo: 0.107,  
-
-8,Algoritmo: HeapSort  ,  Tamanho: 5000,  Comparacoes: 118344,  Trocas: 56672,  Tempo: 0.001,  
-
-9,Algoritmo: ShellSort ,  Tamanho: 5000,  Comparacoes: 2128616,  Trocas: 2128616,  Tempo: 0.015,  
-
+Indice,Algoritmo,Tamanho,Comparacoes,Trocas,Tempo
+1,BubbleSort,2000,2000999,947058,0.015,
+2,HeapSort  ,2000,42008,20004,0.001,
+3,ShellSort ,2000,0,358068,0.002,
+4,BubbleSort,3000,4501499,2242888,0.039,
+5,HeapSort  ,3000,66556,31778,0.001,
+6,ShellSort ,3000,0,772022,0.005,
+7,BubbleSort,5000,12502499,6088462,0.107,
+8,HeapSort  ,5000,118344,56672,0.002,
+9,ShellSort ,5000,0,2128616,0.011,
