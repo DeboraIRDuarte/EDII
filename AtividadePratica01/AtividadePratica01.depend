@@ -11,14 +11,14 @@
 1601395038 c:\users\izabe\onedrive\documentos\ufjf\estudando\ed2\atividadepratica01\saida.h
 	<sstream>
 
-1601428823 source:c:\users\izabe\onedrive\documentos\ufjf\estudando\ed2\edii\atividadepratica01\main.cpp
+1602012921 source:c:\users\izabe\onedrive\documentos\ufjf\estudando\ed2\edii\atividadepratica01\main.cpp
 	<iostream>
 	<cstdlib>
-	<time.h>
+	"time.h"
 	<fstream>
-	<stdlib.h>
+	"stdlib.h"
 	"saida.h"
 
-1601411780 c:\users\izabe\onedrive\documentos\ufjf\estudando\ed2\edii\atividadepratica01\saida.h
+1601433144 c:\users\izabe\onedrive\documentos\ufjf\estudando\ed2\edii\atividadepratica01\saida.h
 	<sstream>
 

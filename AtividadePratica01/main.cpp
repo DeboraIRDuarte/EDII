@@ -1,8 +1,8 @@
 #include <iostream>
 #include <cstdlib>
-#include <time.h>
+#include "time.h"
 #include <fstream>
-#include <stdlib.h>
+#include "stdlib.h"
 #include "saida.h"
 
 using namespace std;
@@ -14,6 +14,11 @@ void criaVetor(int vet[],int tam){
     }
 }
 
+void trocaVetor(int vet[], int vetaux[], int tam){
+    for (int i=0; i<tam; i++){
+        vet[i] = vetaux[i];
+    }
+}
 void imprimeVetor(int vet[], int tam){
     for (int i=0; i<tam; i++){
         cout << vet[i] << "\t";
@@ -117,6 +122,7 @@ int main(){
     clock_t t;
 
     int *vet;
+    int *vetaux;
     int tam;
     int c = 0;
 
@@ -132,61 +138,68 @@ int main(){
         cout << "Tamanho do " << i << " teste: ";
         cin >> tam;
         vet = new int[tam];
+        vetaux = new int[tam];
+        vetaux = vet;
+        criaVetor(vet,tam);
 
 
         //BubbleSort
-        criaVetor(vet,tam); //cria um vetor com valores aleatórios
+        //criaVetor(vet,tam); //cria um vetor com valores aleatórios
         Saida saidab = Saida("BubbleSort",tam);
         t = clock();
         bubbleSort(vet,tam,&saidab);
         t = clock() - t;
-        saidab.setTempo(((float)t)/CLOCKS_PER_SEC);
+        saidab.setTempo(((double)t)/CLOCKS_PER_SEC);
         saidas[c] = saidab;
         c++;
 
-        //imprimeVetor(vet,tam);
 
+        trocaVetor(vet,vetaux,tam);
         //HeapSort
-        criaVetor(vet,tam); //cria um vetor com valores aleatórios
+       // criaVetor(vet,tam); //cria um vetor com valores aleatórios
         Saida saidaq = Saida("HeapSort  ", tam);
         t = clock();
         HeapSort(vet,tam,&saidaq);
         t = clock() - t;
-        saidaq.setTempo(((float)t)/CLOCKS_PER_SEC);
+        saidaq.setTempo(((double)t)/CLOCKS_PER_SEC);
         saidas[c] = saidaq;
         c++;
 
-        //imprimeVetor(vet,tam);
 
+         trocaVetor(vet,vetaux,tam);
         //ShellSort
-        criaVetor(vet,tam); //cria um vetor com valores aleatórios
+        //criaVetor(vet,tam); //cria um vetor com valores aleatórios
         Saida saidash = Saida("ShellSort ",tam);
         t = clock();
         shellSort(vet,tam,&saidash);
         t = clock() - t;
-        saidash.setTempo(((float)t)/CLOCKS_PER_SEC);
+        saidash.setTempo(((double)t)/CLOCKS_PER_SEC);
         saidas[c] = saidash;
         c++;
 
 
+         trocaVetor(vet,vetaux,tam);
         //QSort
-        criaVetor(vet,tam);
+        //criaVetor(vet,tam);
         Saida saidaqsort = Saida("QSort     ",tam);
         t = clock();
         qsort(vet,tam,sizeof(int), compare);
         t = clock() -t;
-        saidaqsort.setTempo(((float)t)/CLOCKS_PER_SEC);
+        saidaqsort.setTempo(((double)t)/CLOCKS_PER_SEC);
         saidas[c]=saidaqsort;
         c++;
+
+        delete [] vet;
+        delete [] vetaux;
     }
 
     //gravando no arquivo de saida
     ofstream arquivoSaida;
-    arquivoSaida.open("saida.txt");
+    arquivoSaida.open("Saida.txt");
 
     if (arquivoSaida.is_open()){
         arquivoSaida << "Indice,Algoritmo,Tamanho,Comparacoes,Trocas,Tempo\n";
-        for (int i=0; i<3*nTestes; i++){
+        for (int i=0; i<4*nTestes; i++){
             string nome;
             nome = saidas[i].getAlgoritmo();
 
@@ -199,7 +212,7 @@ int main(){
         cout << "Arquivo criado!" << endl;
     }
     else {
-        cout << "Não foi possível criar arquivo!" << endl;
+        cout << "Nao foi possivel criar arquivo!" << endl;
     }
 
 
